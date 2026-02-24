@@ -1,0 +1,146 @@
+Custom Base Styles body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Main Container to simulate mobile view on desktop */
+.main-container {
+    max-width: 480px;
+    margin: 0 auto;
+    border-radius: 12px;
+    background-color: #ffffff;
+    min-height: 100vh;
+}
+
+@media (min-width: 576px) {
+    .main-container {
+        min-height: auto;
+    }
+}
+
+/* --- Top Profile Card --- */
+.profile-card {
+    background-color: #454749;
+    border-radius: 8px;
+}
+
+.profile-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* --- Stats Grid Cards --- */
+.stat-card {
+    border-radius: 8px;
+    color: #333;
+}
+
+.stat-img {
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+}
+
+.stat-name {
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+/* Stat card colors based on mockup */
+.stat-pink {
+    background-color: #f3d1d1;
+}
+
+.stat-green {
+    background-color: #e5ecd3;
+}
+
+.stat-yellow {
+    background-color: #f8dfaa;
+}
+
+/* --- Info Section --- */
+.info-card {
+    background-color: #454749;
+    border-radius: 8px;
+    border-left: 4px solid #f0b429 !important;
+}
+
+.info-card .text-warning {
+    color: #f0b429 !important;
+}
+
+/* --- Accordion (Memberships) --- */
+#membershipAccordion {
+    --bs-accordion-border-width: 0;
+    --bs-accordion-bg: transparent;
+}
+
+.membership-item {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.membership-btn {
+    padding: 14px 16px;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+/* Prevent sharp corners when expanded */
+.membership-btn:not(.collapsed) {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: none;
+}
+
+.foundation-btn {
+    background-color: #f0b429;
+}
+
+.foundation-btn:not(.collapsed) {
+    background-color: #f0b429;
+}
+
+.economy-btn {
+    background-color: #7a9e9f;
+}
+
+.economy-btn:not(.collapsed) {
+    background-color: #7a9e9f;
+}
+
+/* Change the default Bootstrap accordion arrow color to white */
+.accordion-button::after {
+    filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+.membership-body {
+    background-color: #454749;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 16px;
+}
+
+/* --- Bottom Link --- */
+.bottom-btn {
+    background-color: #fbf0d8;
+    color: #f0b429;
+    font-size: 0.75rem;
+    border-radius: 20px;
+    border: 1px solid #f0b429;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+.bottom-btn:hover {
+    background-color: #f0b429;
+    color: #ffffff;
+}
+
+.form-control:focus {
+    border-color: #f0b429;
+    box-shadow: 0 0 0 0.25rem rgba(240, 180, 41, 0.25);
+}
