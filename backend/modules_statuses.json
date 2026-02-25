@@ -1,4 +1,7 @@
 {
     "Auth": true,
-    "Example": true
+    "Example": true,
+    "User": true,
+    "Wallet": true,
+    "Transaction": true
 }
