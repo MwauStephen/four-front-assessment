@@ -98,7 +98,7 @@ Follow these steps in order to test the full functionality of the API.
 *   **Description**: Returns the wallet balance (Calculated: Income - Expense) and all transactions.
 
 ```markdown
-![Description of Screenshot](screenshots/get-wallet.png)
+![screenshots/get-wallet.png]
 ```
 
 ### 6. View User Profile (Overall Balance)
