@@ -1,59 +1,125 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Money Tracker API Assessment
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is the backend API for the Money Tracker assessment built with PHP Laravel and MySQL database.
 
-## About Laravel
+## Setup Instructions
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1.  **Clone the repository** (if applicable).
+2.  **Environment Setup**:
+    *   Navigate to the `backend` directory.
+    *   Ensure your `.env` file is configured. This project uses **MySQL** for ease of testing.
+3.  **Install Dependencies**:
+    ```bash
+    composer install
+    ```
+4.  **Run Migrations**:
+    ```bash
+    php artisan migrate
+    ```
+5.  **Start the Server**:
+    ```bash
+    php artisan serve
+    ```
+    The API will be available at `http://localhost:8000/api`.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## API Testing with Postman (Step-by-Step)
 
-## Learning Laravel
+Follow these steps in order to test the full functionality of the API.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 1. Create a User Account
+*   **Method**: `POST`
+*   **URL**: `http://localhost:8000/api/users`
+*   **Body (JSON)**:
+    ```json
+    {
+        "name": "Postman Test",
+        "email": "postman@example.com"
+    }
+    ```
+*   **Note**: Save the `id` from the response (e.g., `1`).
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```markdown
+![Description of Screenshot](screenshots/create-user.png)
+``
 
-## Laravel Sponsors
+### 2. Create a Wallet
+*   **Method**: `POST`
+*   **URL**: `http://localhost:8000/api/users/1/wallets` (replace `1` with your User ID)
+*   **Body (JSON)**:
+    ```json
+    {
+        "name": "Business Wallet",
+        "type": "business"
+    }
+    ```
+*   **Note**: Save the `id` from the response (e.g., `1`).
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```markdown
+![Description of Screenshot](screenshots/create-wallet.png)
+``
 
-### Premium Partners
+### 3. Add an Income Transaction
+*   **Method**: `POST`
+*   **URL**: `http://localhost:8000/api/wallets/1/transactions` (replace `1` with your Wallet ID)
+*   **Body (JSON)**:
+    ```json
+    {
+        "type": "income",
+        "amount": 1000.00,
+        "description": "Project Payment"
+    }
+    ```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```markdown
+![Description of Screenshot](screenshots/create-income.png)
+```
 
-## Contributing
+### 4. Add an Expense Transaction
+*   **Method**: `POST`
+*   **URL**: `http://localhost:8000/api/wallets/1/transactions`
+*   **Body (JSON)**:
+    ```json
+    {
+        "type": "expense",
+        "amount": 250.00,
+        "description": "Internet Subscription"
+    }
+    ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```markdown
+![Description of Screenshot](screenshots/create-expense.png)
+```
 
-## Code of Conduct
+### 5. View Specific Wallet (Balance & History)
+*   **Method**: `GET`
+*   **URL**: `http://localhost:8000/api/wallets/1`
+*   **Description**: Returns the wallet balance (Calculated: Income - Expense) and all transactions.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```markdown
+![Description of Screenshot](screenshots/get-wallet.png)
+```
 
-## Security Vulnerabilities
+### 6. View User Profile (Overall Balance)
+*   **Method**: `GET`
+*   **URL**: `http://localhost:8000/api/users/1/profile`
+*   **Description**: Returns all user wallets with their individual balances and the **total overall balance** across all wallets.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
+ 
+ ```markdown
+![Description of Screenshot](screenshots/get-user-profile.png)
+```
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Technical Details
+
+- **Architecture**: Standard Laravel MVC (Resources modularized in API Controllers).
+- **Database**: MySQL (configured in `.env`).
+- **Relationships**: 
+    - User has many Wallets.(which means a user can have multiple wallets and a wallet belongs to a user)`Relationship:one to many`
+
+    - Wallet has many Transactions.(which means a wallet can have multiple transactions and a transaction belongs to a wallet)`Relationship:one to many`
+
+- **Derived Logic**: Balances are calculated dynamically using Eloquent relationship sums.Instead of using raw DB facades or queries.
