@@ -40,9 +40,9 @@ Follow these steps in order to test the full functionality of the API.
     ```
 *   **Note**: Save the `id` from the response (e.g., `1`).
 
-```markdown
-![Description of Screenshot](screenshots/create-user.png)
-``
+
+![screenshot of create user](screenshots/create-user.png)
+
 
 ### 2. Create a Wallet
 *   **Method**: `POST`
@@ -56,9 +56,9 @@ Follow these steps in order to test the full functionality of the API.
     ```
 *   **Note**: Save the `id` from the response (e.g., `1`).
 
-```markdown
-![Description of Screenshot](screenshots/create-wallet.png)
-``
+
+![screenshot of create wallet](screenshots/create-wallet.png)
+
 
 ### 3. Add an Income Transaction
 *   **Method**: `POST`
@@ -72,9 +72,7 @@ Follow these steps in order to test the full functionality of the API.
     }
     ```
 
-```markdown
-![Description of Screenshot](screenshots/create-income.png)
-```
+![screenshot of create income](screenshots/create-income.png)
 
 ### 4. Add an Expense Transaction
 *   **Method**: `POST`
@@ -88,18 +86,14 @@ Follow these steps in order to test the full functionality of the API.
     }
     ```
 
-```markdown
-![Description of Screenshot](screenshots/create-expense.png)
-```
+![screenshot of create expense](screenshots/create-expense.png)
 
 ### 5. View Specific Wallet (Balance & History)
 *   **Method**: `GET`
 *   **URL**: `http://localhost:8000/api/wallets/1`
 *   **Description**: Returns the wallet balance (Calculated: Income - Expense) and all transactions.
 
-```markdown
-![screenshots/get-wallet.png]
-```
+![screenshot of get wallet](screenshots/get-wallet.png)
 
 ### 6. View User Profile (Overall Balance)
 *   **Method**: `GET`
@@ -108,9 +102,8 @@ Follow these steps in order to test the full functionality of the API.
 
 ---
  
- ```markdown
-![Description of Screenshot](screenshots/get-user-profile.png)
-```
+![screenshot of get user profile](screenshots/get-user-profile.png)
+
 
 
 ## Technical Details
